@@ -1,9 +1,8 @@
 import React, { useEffect, useState, Component } from 'react';
-import { Route, useNavigate } from 'react-router-dom';
 import { storage } from "../components/config/config";
 
 
-const Home = () => {
+const Images = () => {
     const [url, setUrl] = useState();
 
     useEffect(() => {
@@ -18,27 +17,21 @@ const Home = () => {
         
         const loadImages = async () => {
             var url = await fetchImages();
-            setUrl(url.at(-1));
+            setUrl(url);
         };
         loadImages();
     }, []);
-
-    let navigate = useNavigate();
-    const routeChange = () => {
-        let path = `images`;
-        navigate(path);
-    }
+    console.log(url);
     return (
         <div className="container">
             <div className="row">
                 <div className="col-sm">
-                    <p>Latest Image</p>
+                    <p>Images</p>
                     <img src={url}></img>
-                    <button className="px-4" onClick={routeChange}>More</button>
                 </div>
             </div>
         </div>
     );
 }
 
-export default Home
+export default Images

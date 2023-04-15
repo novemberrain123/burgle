@@ -1,3 +1,7 @@
+using app.Services;
+using Coravel;
+using Newtonsoft.Json;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -11,6 +15,8 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
+builder.Services.AddCors();
+builder.Services.AddSingleton<InfluxDBService>();
 
 var app = builder.Build();
 
@@ -31,5 +37,9 @@ app.MapControllerRoute(
     pattern: "{controller}/{action=Index}/{id?}");
 
 app.MapFallbackToFile("index.html"); ;
+
+app.MapGet("/getSensor", () => JsonConvert.SerializeObject(new Dictionary<string, int>() { { "val", 22 } }));
+
+app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod());
 
 app.Run();

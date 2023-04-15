@@ -4,28 +4,16 @@ import { storage } from "../components/config/config";
 
 
 const Home = () => {
-    const [error, setError] = useState();
     const [url, setUrl] = useState();
-    const [curSensorVal, setCurSensorVal] = useState(0);
-    var xd;
+    const [curSensorVal, setCurSensorVal] = useState();
+    const [defSensorVal, setDefSensorVal] = useState();
     useEffect(() => {
-        //let r = await fetch("/getSensor");
-        //let buff = await r.arrayBuffer();
-        //let decoder = new TextDecoder('utf-16');
-        //let val = JSON.parse(decoder.decode(buff));
-        //setCurSensorVal(val);
-        fetch("/getSensor") //TODO why wont it work!!
-            .then((response) => response.arrayBuffer())
-            .then((buffer) => new TextDecoder("utf-16").decode(buffer))
-            .then((response) => JSON.parse(response))
-            .then(
-                (result) => {
-                    setCurSensorVal(result);
-                },
-                (error) => {
-                    setError(error);
-                }
-        )
+        fetch('home')
+            .then(response => response.json())
+            .then(data => {
+                setCurSensorVal(data);
+                setDefSensorVal(data);
+            })
 
         const fetchImages = async () => {
             let result = await storage.ref().child("data").listAll();
@@ -50,9 +38,53 @@ const Home = () => {
         navigate(path);
     }
 
-    //submit new sensor threshold
-    const handleSubmit = () => {
+    async function postData(url = "", data = {}) {
+        const response = await fetch(url, {
+            method: "POST", 
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data), 
+        });
+        return response;
+    }
 
+    //submit new sensor threshold
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        //const requestOptions = {
+        //    method: 'GET',
+        //    headers: { 'Content-Type': 'application/json' },
+        //    body: JSON.stringify({ curSensorVal })
+        //};
+        postData('home', { curSensorVal })
+            .then((response) => {
+                if (response.status == "200") {
+                    setDefSensorVal(curSensorVal);
+                    window.alert("Threshold changed to " + { curSensorVal });
+                }
+                else {
+                    setCurSensorVal(defSensorVal);
+                    window.alert("Failed to change threshold.");
+                }
+        })
+    //    fetch('home', requestOptions)
+    //        .then(response => response.json())
+    //        .then(response => {
+    //            if (response.status == "200") {
+    //                setDefSensorVal(curSensorVal);
+    //                window.alert("Threshold changed to " + { curSensorVal });
+    //            }
+    //            else {
+    //                setCurSensorVal(defSensorVal);
+    //                window.alert("Failed to change threshold.");
+    //            }
+    //        })
+    }
+
+    const handleInputChange = (event) => {
+        event.persist();
+        setCurSensorVal((values) => event.target.value);
     }
 
     return (
@@ -67,8 +99,9 @@ const Home = () => {
                     <p>Settings</p>
                     <form method="post" onSubmit={handleSubmit}>
                         <label>
-                            Ultrasonic Sensor Threshold: <input type="number" name="input1" defaultValue={curSensorVal} />
+                            Ultrasonic Sensor Threshold (cm): <input type="number" name="threshold" step="0.01" value={curSensorVal} onChange={handleInputChange} min="5" max="50"/>
                         </label>
+                        <input type="submit" value="New Threshold"/>
                     </form>
                 </div>
             </div>

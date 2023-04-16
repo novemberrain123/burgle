@@ -55,12 +55,12 @@ namespace proj.Controllers
              var results = await service.QueryAsync(async query =>
              {
                 var flux = "from(bucket:\"bucket1\") " +
-                            "|> range(start: 0)" +
+                            "|> range(start: -15m)" +
                             "|> filter(fn: (r) => " +
                             "r._measurement == \"sensors\" and " +
                             "r._field == \"ultrasonic1\")";
                 var tables = await query.QueryAsync(flux, "johnorg");
-                return tables[0].Records.Select(record => float.Parse(record.GetValue().ToString()));
+                return tables[0].Records.Select(record => new[] { record.GetValue().ToString(), record.GetTime().ToString() });
              });
 
              return Ok(results);

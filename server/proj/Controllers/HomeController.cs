@@ -26,8 +26,8 @@ namespace proj.Controllers
                 var tables = await query.QueryAsync(flux, "johnorg");
                 return tables[0].Records.Select(record => float.Parse(record.GetValue().ToString()));
             });
-            
-            return Ok(results);
+
+            return Ok(results.Last());
         }
 
         [HttpPost]
@@ -46,6 +46,25 @@ namespace proj.Controllers
             });
 
             return Ok();
+        }
+
+        [HttpGet]
+        [Route("data")]
+        public async Task<IActionResult> GetSensorValues([FromServices] InfluxDBService service)
+        {
+             var results = await service.QueryAsync(async query =>
+             {
+                var flux = "from(bucket:\"bucket1\") " +
+                            "|> range(start: 0)" +
+                            "|> filter(fn: (r) => " +
+                            "r._measurement == \"sensors\" and " +
+                            "r._field == \"ultrasonic1\")";
+                var tables = await query.QueryAsync(flux, "johnorg");
+                return tables[0].Records.Select(record => float.Parse(record.GetValue().ToString()));
+             });
+
+             return Ok(results);
+
         }
     }
     

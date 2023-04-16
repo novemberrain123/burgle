@@ -52,34 +52,17 @@ const Home = () => {
     //submit new sensor threshold
     const handleSubmit = (event) => {
         event.preventDefault();
-        //const requestOptions = {
-        //    method: 'GET',
-        //    headers: { 'Content-Type': 'application/json' },
-        //    body: JSON.stringify({ curSensorVal })
-        //};
         postData('home', { curSensorVal })
             .then((response) => {
                 if (response.status == "200") {
                     setDefSensorVal(curSensorVal);
-                    window.alert("Threshold changed to " + { curSensorVal });
+                    window.alert("Threshold changed to " + curSensorVal );
                 }
                 else {
                     setCurSensorVal(defSensorVal);
                     window.alert("Failed to change threshold.");
                 }
         })
-    //    fetch('home', requestOptions)
-    //        .then(response => response.json())
-    //        .then(response => {
-    //            if (response.status == "200") {
-    //                setDefSensorVal(curSensorVal);
-    //                window.alert("Threshold changed to " + { curSensorVal });
-    //            }
-    //            else {
-    //                setCurSensorVal(defSensorVal);
-    //                window.alert("Failed to change threshold.");
-    //            }
-    //        })
     }
 
     const handleInputChange = (event) => {
@@ -99,7 +82,7 @@ const Home = () => {
                     <p>Settings</p>
                     <form method="post" onSubmit={handleSubmit}>
                         <label>
-                            Ultrasonic Sensor Threshold (cm): <input type="number" name="threshold" step="0.01" value={curSensorVal} onChange={handleInputChange} min="5" max="50"/>
+                            Current Sensor Threshold (cm): <input type="number" name="threshold" step="0.01" value={curSensorVal} onChange={handleInputChange} min="5" max="50"/>
                         </label>
                         <input type="submit" value="New Threshold"/>
                     </form>

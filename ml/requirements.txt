@@ -1,0 +1,4 @@
+matplotlib
+imutils
+opencv-python-headless
+firebase-admin

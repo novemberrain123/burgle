@@ -24,21 +24,21 @@ ESP8266WiFiMulti wifiMulti;
 #include "addons/RTDBHelper.h"
 
 // WiFi AP SSID
-#define WIFI_SSID "TP-Link_4A9C"
+#define WIFI_SSID ""
 // WiFi password
-#define WIFI_PASSWORD "20077792"
+#define WIFI_PASSWORD ""
 // InfluxDB v2 server url, e.g. https://eu-central-1-1.aws.cloud2.influxdata.com (Use: InfluxDB UI -> Load Data -> Client Libraries)
 #define INFLUXDB_URL "http://192.168.1.2:8086"
 // InfluxDB v2 server or cloud API token (Use: InfluxDB UI -> Data -> API Tokens -> Generate API Token)
 //#define INFLUXDB_TOKEN "X8aduxyvI1kQ4W3Fu8png6VUpe-1RdQl5QvURsjjAa-HunMjKT7jZwKiET_9MCKkBSm7WryKOPQ2Cd_ec0hnbw=="
-#define INFLUXDB_TOKEN "6WvhUf1Hh_mh2dCUERLhhyPOwV1eMGlp0XEFfy1pd90nA8Lnoc1Fqo4QljWdDjnWiqKs2RDb1vz6TMgJJmv9mw=="
+#define INFLUXDB_TOKEN ""
 // InfluxDB v2 organization id (Use: InfluxDB UI -> User -> About -> Common Ids )
 #define INFLUXDB_ORG "johnorg"
 // InfluxDB v2 bucket name (Use: InfluxDB UI ->  Data -> Buckets)
 #define INFLUXDB_BUCKET "bucket1"
-#define API_KEY "AIzaSyDMA8WmbQ18Y-0ta7HEw8gRJgSGuiwtm5I"
+#define API_KEY ""
 #define USER_EMAIL "pleaseworkusob@gmail.com"
-#define USER_PASSWORD "2000qwe5M:::"
+#define USER_PASSWORD ""
 #define STORAGE_BUCKET_ID "burgle.appspot.com"
 #define DATABASE_URL "https://burgle-default-rtdb.asia-southeast1.firebasedatabase.app"
 // Set timezone string according to https://www.gnu.org/software/libc/manual/html_node/TZ-Variable.html

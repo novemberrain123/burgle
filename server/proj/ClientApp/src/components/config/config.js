@@ -7,7 +7,7 @@ import "firebase/messaging";
 import { getMessaging, getToken } from "firebase/messaging";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDMA8WmbQ18Y-0ta7HEw8gRJgSGuiwtm5I",
+    apiKey: "",
     authDomain: "burgle.firebaseapp.com",
     projectId: "burgle",
     storageBucket: "burgle.appspot.com",

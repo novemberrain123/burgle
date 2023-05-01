@@ -14,8 +14,8 @@
 #include "freertos/FreeRTOS.h"
 
 //Replace with your network credentials
-const char* ssid = "TP-Link_4A9C";
-const char* password = "20077792";
+const char* ssid = "";
+const char* password = "";
 char FILE_PHOTO[256];
 int count = 1;
 const char* ntpServer = "pool.ntp.org";
@@ -23,12 +23,12 @@ const long  gmtOffset_sec = 28800; //GMT+8 x 60 x 60
 const int   daylightOffset_sec = 0;
 #define FILE_DEFAULT "/data/photo.jpg"
 // Insert Firebase project API Key
-#define API_KEY "AIzaSyDMA8WmbQ18Y-0ta7HEw8gRJgSGuiwtm5I"
+#define API_KEY ""
 #define DATABASE_URL "https://burgle-default-rtdb.asia-southeast1.firebasedatabase.app"
 
 // Insert Authorized Email and Corresponding Password
 #define USER_EMAIL "pleaseworkusob@gmail.com"
-#define USER_PASSWORD "2000qwe5M:::"
+#define USER_PASSWORD ""
 
 // Insert Firebase storage bucket ID e.g bucket-name.appspot.com
 #define STORAGE_BUCKET_ID "burgle.appspot.com"

@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using System.Drawing.Text;
 using InfluxDB.Client.Writes;
 using System.Text.Json;
+using System.Diagnostics;
 
 namespace proj.Controllers
 {
@@ -65,6 +66,28 @@ namespace proj.Controllers
 
              return Ok(results);
 
+        }
+
+        [HttpGet]
+        [Route("intrusion")]
+        public IActionResult DoAnalysis()
+        {
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+            startInfo.FileName = "cmd.exe";
+            var path = @"D:\Code\burgle\ml\run.bat";
+            startInfo.Arguments = $"/c \"{path}\"";
+            startInfo.RedirectStandardOutput = true; // enable redirection of the process output
+            var process = new Process();
+            process.StartInfo = startInfo;
+            process.OutputDataReceived += new DataReceivedEventHandler((sender, e) =>
+            {
+                Console.WriteLine(e.Data); // write the output to the console
+            });
+            process.Start();
+            process.BeginOutputReadLine(); // Start asynchronous reading of the output
+            process.WaitForExit();
+            Thread.Sleep(1000);
+            return Ok();
         }
     }
     

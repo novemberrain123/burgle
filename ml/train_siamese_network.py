@@ -12,8 +12,8 @@ import numpy as np
 print(tf.__version__)
 print(tf.config.list_physical_devices('GPU'))
 # load MNIST dataset and scale the pixel values to the range of [0, 1]
-print("[INFO] loading MNIST dataset...")
-(trainX, trainY), (testX, testY) = mnist.load_data()
+print("[INFO] loading dataset...")
+(trainX, trainY), (testX, testY) = utils.load_data()
 trainX = trainX / 255.0
 testX = testX / 255.0
 # add a channel dimension to the images

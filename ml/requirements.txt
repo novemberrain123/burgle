@@ -2,3 +2,6 @@ matplotlib
 imutils
 opencv-python-headless
 firebase-admin
+scikit-image
+lpips
+torchvision

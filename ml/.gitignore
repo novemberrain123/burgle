@@ -2,3 +2,4 @@ examples
 output
 train_images
 *.json
+pyimagesearch/__pycache__

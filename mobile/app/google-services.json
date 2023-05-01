@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "738415556590",
+    "firebase_url": "https://burgle-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "burgle",
+    "storage_bucket": "burgle.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:738415556590:android:b4035993418283331280ff",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "738415556590-3jldv7quh2e2ofqieomisict9um8hidr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.myapplication",
+            "certificate_hash": "89ca1849979c048ef76ea0461c545178687a28f4"
+          }
+        },
+        {
+          "client_id": "738415556590-45soalculn6a5167lne8rjaecetu2vd0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7XZNXwYVybk6qP9WqsYcl2VdFCFn0gM0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "738415556590-45soalculn6a5167lne8rjaecetu2vd0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

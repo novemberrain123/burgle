@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "moment": "^2.29.4",
+    "nivo": "^0.31.0",
+    "recharts": "^2.5.0"
+  }
+}

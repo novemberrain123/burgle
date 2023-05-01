@@ -1,4 +1,4 @@
-FROM tensorflow/tensorflow:latest
+FROM pytorch/pytorch:latest
 WORKDIR /app
 COPY requirements.txt /app
 RUN apt-get update

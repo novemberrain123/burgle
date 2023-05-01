@@ -2,6 +2,8 @@
 import tensorflow.keras.backend as K
 import matplotlib.pyplot as plt
 import numpy as np
+import os
+from PIL import Image
 
 def make_pairs(images, labels):
 	# initialize two empty lists to hold the (image, image) pairs and
@@ -60,3 +62,24 @@ def plot_training(H, plotPath):
 	plt.ylabel("Loss/Accuracy")
 	plt.legend(loc="lower left")
 	plt.savefig(plotPath)
+
+def load_data():
+	image_arrays = []
+	folder_path = "train_images/"
+	for filename in os.listdir(folder_path):
+    # Check if the file is an image (e.g. JPG or PNG)
+		if filename.endswith('.jpg') or filename.endswith('.png'):
+			# Load the image file
+			image = Image.open(os.path.join(folder_path, filename))
+
+			# Convert the image to a NumPy array
+			img_array = np.array(image)
+
+			# Append the array to the list of image arrays
+			image_arrays.append(img_array)
+			split_indices = [int(len(image_arrays) * 0.7)]
+			train_x, test_x = np.split(image_arrays, split_indices)
+			train_y = np.zeros(len(train_x))
+			test_y = np.zeros(len(test_x))
+
+			return (train_x, train_y), (test_x, test_y)

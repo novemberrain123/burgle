@@ -1,0 +1,1 @@
+docker run -v D:\Code\burgle\ml:/app -it --rm py_image python similarity_lpips.py
